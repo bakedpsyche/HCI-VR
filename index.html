@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+    <!-- Generated automatically by AFRAME Exporter for Blender - https://silverslade.itch.io/a-frame-blender-exporter -->
+    <head>
+        <title>WebXR Application</title>
+        <link rel="icon" type="image/png" href="favicon.ico"/>
+        <meta name="description" content="3D Application">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+        <script type="text/javascript" src="js/webxr.js"></script>
+        <script type="text/javascript" src="js/joystick.js"></script>
+        <script type="text/javascript" src="js/camera-cube-env.js"></script>
+        <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+        
+        <link rel="stylesheet"
+              type="text/css" 
+              href="style.css">
+    </head>
+    <body onload="init();">
+        <a-scene   renderer="antialias: true;
+                           colorManagement: true;
+                           physicallyCorrectLights: true"  
+                 shadow="type: pcfsoft; 
+                           autoUpdate: true;">
+            <!-- Assets -->
+            <a-assets>
+				<a-asset-item id="Plane" src="./assets/Plane.gltf"></a-asset-item>
+				<a-asset-item id="Plane.001" src="./assets/Plane.001.gltf"></a-asset-item>
+				<a-asset-item id="Plane.002" src="./assets/Plane.002.gltf"></a-asset-item>
+				<a-asset-item id="Plane.003" src="./assets/Plane.003.gltf"></a-asset-item>
+				<a-asset-item id="Plane.004" src="./assets/Plane.004.gltf"></a-asset-item>
+                <img id="sky"                 src="./resources/sky.jpg">
+                <img id="icon-play"           src="./resources/play.png">
+                <img id="icon-pause"          src="./resources/pause.png">
+                <img id="icon-play-skip-back" src="./resources/play-skip-back.png">
+                <img id="icon-mute"           src="./resources/mute.png">
+                <img id="icon-volume-low"     src="./resources/volume-low.png">
+                <img id="icon-volume-high"    src="./resources/volume-high.png">
+                <img id="ground"              src="./resources/ground.jpg">
+            </a-assets>
+
+            <!-- Entities -->
+            <a-entity>
+                <a-plane src="#ground" 
+                     height="10" 
+                     width="10"
+                     rotation="-90 0 0">
+                </a-plane>
+            </a-entity>
+            
+			<a-entity id="#Plane"  
+                      gltf-model="#Plane" 
+                      scale="1 1 1" 
+                      position="0.0 1.0141634941101074 -0.0" 
+                      visible="true" 
+                      shadow="cast: false" >
+            </a-entity>
+            
+            <!-- starry  -->
+			<a-entity id="#Plane.001"  
+                      gltf-model="#Plane.001" 
+                      scale="1 1 1" 
+                      position="4.7 2.4 " 
+                      visible="true" 
+                      shadow="cast: false"
+                      event-set__enter="_event: mouseenter;
+                                       position: 3 1.5 1;
+                                       _target: #star;
+                                       visible:true "
+                      event-set__leave="_event: mouseleave;
+                                        _target: #star;
+                                        position: 4.7 2.5 2.5;
+                                        visible:false">
+            </a-entity>
+            <a-entity id="light1"
+                          light="type: point;
+                          distance: 11;
+                          intensity: 4;
+                          castShadow: true"
+                          visible="true"
+                      position= "0 6 0">
+            </a-entity>
+            
+            <a-entity id="star"
+                      position="4.7 2.5 2.5"
+                      rotation="0 -90 0"
+                      scale="3 3 3"
+                      visible="false"
+                      text="value: The Starry Night 
+                            It is an oil on canvas painting by Dutch Post-Impressionist painter Vincent van Gogh. Painted in June 1889, it depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an imaginary village. ;
+                            color:#ffffff;
+                            align: left"
+                       visible="flase">
+                
+            </a-entity>
+            
+            
+            <!-- lisa -->
+			<a-entity id="#Plane.002"  
+                      gltf-model="#Plane.002" 
+                      scale="1 1 1" 
+                      position="0 2.3 -4.7" 
+                      visible="true" 
+                      shadow="cast: false" 
+                      event-set__enter="_event: mouseenter;
+                                       position: 1.8 2 -3;
+                                       _target: #lisa;
+                                       visible:true "
+                      event-set__leave="_event: mouseleave;
+                                        _target: #lisa;
+                                        position: 2 2.5 -4.6;
+                                        visible:false">
+            </a-entity>
+            
+            <a-entity id="lisa"
+                      position="2 2.5 -4.6"
+                      scale="3 3 3 "
+                      visible="false"
+                      text="value: Mona Lisa, 
+                            Also called Portrait of Lisa Gherardini, wife of Francesco del Giocondo, Italian La Gioconda, or French La Joconde, oil painting on a poplar wood panel by Leonardo da Vinci, probably the world’s most famous painting. It was painted sometime between 1503 and 1519, when Leonardo was living in Florence, and it now hangs in the Louvre Museum, Paris, where it remained an object of pilgrimage in the 21st century. The sitter’s mysterious smile and her unproven identity have made the painting a source of ongoing investigation and fascination. ;
+                            color:#ffffff;
+                            align: left">
+                
+            </a-entity>
+            
+             <!-- persistance -->
+			<a-entity id="#Plane.003" 
+                      gltf-model="#Plane.003" 
+                      scale="1 1 1" 
+                      position="-4.749973773956299 2.362546443939209 0" 
+                      visible="true" 
+                      shadow="cast: false" 
+                      event-set__enter="_event: mouseenter;
+                                       position:-3 2 -2;
+                                       _target: #memory;
+                                       visible:true "
+                      event-set__leave="_event: mouseleave;
+                                        _target: #memory;
+                                        position:-3.7 2-2;
+                                        visible:false">
+            </a-entity>
+            <a-entity id="memory"
+                      position="-4.7 2.5 -2.4"
+                      scale="3 3 3 "
+                      rotation="0 90 0"
+                      visible="false"
+                      text="value: The Persistence of Memory is a 1931 painting by artist Salvador Dalí and one of the most recognizable works of Surrealism. First shown at the Julien Levy Gallery in 1932, since 1934 the painting has been in the collection of the Museum of Modern Art in New York City, which received it from an anonymous donor.;
+                      color:#ffffff;
+                      align: left">
+            </a-entity>
+            
+            <!-- goya -->
+			<a-entity id="#Plane.004" 
+                      gltf-model="#Plane.004"
+                      scale="1 1 1" 
+                      position="0.036487773060798645 2.298884391784668 4.757425785064697" visible="true"
+                      shadow="cast: false" 
+                      event-set__enter="_event: mouseenter;
+                                       position: -2 2.4 4;
+                                       _target: #saturn;
+                                       visible:true "
+                      event-set__leave="_event: mouseleave;
+                                        _target: #saturn;
+                                        position:-2.5 2.4 4.7;
+                                        visible:false">
+            </a-entity>
+            <a-entity id="saturn"
+                      position="-2.5 2.4 4.7"
+                      scale="3 3 3 "
+                      rotation="0 180 0"
+                      visible="false"
+                      text="value: Saturn Devouring His Son
+                            The name given to a painting by Spanish artist Francisco Goya. According to the traditional interpretation, it depicts the Greek myth of the Titan Cronus, who, fearing that he would be overthrown by one of his children, ate each one upon their birth. ;
+                            color:#ffffff;
+                            align: left">
+                
+            </a-entity>
+            <a-entity id="credits"
+                      position="-3 2.3 -4.4"
+                      scale="2 2 2 "
+                      rotation="0 0 0"
+                      text="value: HCI VR assignment
+                            
+                            Abhishek Prem,  Aman Chandra
+
+                            Guide.  Prof. Keyur Sorathia
+
+                            Indian Institute of Technology, Guwahati
+                            
+                            Click here for source code;
+                            color:#a0a0a0;
+                            align: center"
+                            >
+                <a-plane
+                         Height=.4;
+                         color=#464646
+                         link="href: https://github.com/bakedpsyche/HCI-VR">
+                </a-plane>
+
+                
+            </a-entity>
+
+            <!-- Camera -->
+            <a-entity id="player" 
+                position="0 0 1" 
+                movement-controls="speed: 0.10000000149011612;">
+                <a-entity id="camera" 
+                    camera="near: 0.001" 
+                    position="0 2 0" 
+                    look-controls="pointerLockEnabled: true">
+                        <a-entity id="cursor" 
+                                  cursor="fuse: false;" 
+                                  animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 50; from: 	0.1 0.1 0.1; to: 1 1 1"
+                            position="0 0 -0.1"
+                            geometry="primitive: circle; radius: 0.001;"
+                            material="color: #CCC; shader: flat;">
+                        </a-entity>
+                </a-entity>
+                    <a-entity id="leftHand" 
+                              oculus-touch-controls="hand: left" 
+                              vive-controls="hand: left">
+                </a-entity>
+					<a-entity id="rightHand" 
+                              laser-controls oculus-touch-controls="hand: right" 
+                              vive-controls="hand: right" >
+                </a-entity>
+            </a-entity>
+
+             <!-- Lights ambient and global -->
+            <a-entity id="ambient"
+                      light="type: ambient;
+                             intensity: .1 ">
+            </a-entity>
+            <a-entity id="sun"
+                      light="type: directional;
+                             color: #86b4eb;
+                             intensity: 1;
+                             castShadow: true;
+                             shadowCameraFar: 500;
+                             shadowCameraVisible: false;
+                             shadowBias: -0.001;
+                             shadowMapHeight:512;
+                             shadowMapWidth:512;
+                             shadowCameraLeft: -50;
+                             shadowCameraRight: 50;
+                             shadowCameraBottom: -50;
+                             shadowCameraTop: 50;" 
+                      position="10 50 -10">
+            </a-entity>
+            <!-- Sky dome -->
+            <a-sky src="#sky" 
+                   material="" 
+                   geometry="" 
+                   rotation="0 90 0">
+            </a-sky>
+        </a-scene>
+    </body>
+</html>
+<!-- Generated automatically by AFRAME Exporter for Blender - https://silverslade.itch.io/a-frame-blender-exporter -->
